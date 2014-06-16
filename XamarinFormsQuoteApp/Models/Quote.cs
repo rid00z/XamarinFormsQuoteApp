@@ -22,7 +22,7 @@ namespace QuoteApp.Models
             set;
         }
 
-        public decimal Total {
+        public string Total {
             get;
             set;
         }

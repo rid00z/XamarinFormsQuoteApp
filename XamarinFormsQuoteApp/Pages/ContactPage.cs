@@ -26,7 +26,7 @@ namespace QuoteApp.Pages
 
             Content = stacker;
 
-            ToolbarItems.Add(new ToolbarItem("Done", null, () => {
+			ToolbarItems.Add(new ToolbarItem("Done", null, () => {
                 ViewModel.Done.Execute(null);
             }));
         }

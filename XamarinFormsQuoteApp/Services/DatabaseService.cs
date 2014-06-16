@@ -23,6 +23,7 @@ namespace QuoteApp.Services
         void Setup()
         {
             _connection.CreateTable<Contact> ();
+            _connection.DropTable<Quote> ();
             _connection.CreateTable<Quote> ();
         }
 

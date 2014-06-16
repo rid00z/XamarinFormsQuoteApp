@@ -23,16 +23,16 @@ namespace QuoteApp.Pages
 
 			listView.ItemSelected += (sender, args) =>
 			{
-				if (args.SelectedItem == "Contacts")
+				if ((string)args.SelectedItem == "Contacts")
 					Detail = _contactNavPage;
-				if (args.SelectedItem == "Quotes")
+				if ((string)args.SelectedItem == "Quotes")
 					Detail = _quotesNavPage;
 
 				IsPresented = false;
 			};
 
 			_menuPage.Content = listView;
-			Master = _menuPage;
+			Master = new NavigationPage(_menuPage) { Title = "Menu" };
 		}
 
         public void PushPage (Page page, BasePageModel model)

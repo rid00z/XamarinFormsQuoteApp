@@ -87,6 +87,6 @@ Global
 		{F35F5C99-87E3-492C-B4E0-3D237809A914}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Android\XamarinFormsQuoteApp.Android.csproj
+		StartupItem = iOS\XamarinFormsQuoteApp.iOS.csproj
 	EndGlobalSection
 EndGlobal

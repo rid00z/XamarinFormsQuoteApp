@@ -24,7 +24,7 @@ namespace QuoteApp.Pages
             list.SetBinding (ListView.ItemsSourceProperty, "Contacts");
             list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => ViewModel.ContactSelected.Execute (e.SelectedItem);
 
-            ToolbarItems.Add(new ToolbarItem("Add", null, () => {
+			ToolbarItems.Add(new ToolbarItem("Add", null, () => {
                 ViewModel.AddContact.Execute(null);
             }));
 
@@ -34,7 +34,7 @@ namespace QuoteApp.Pages
         protected override void OnAppearing ()
         {
             base.OnAppearing ();
-            ViewModel.Reload ();
+			ViewModel.Reload ();
         }
 	}
 }
