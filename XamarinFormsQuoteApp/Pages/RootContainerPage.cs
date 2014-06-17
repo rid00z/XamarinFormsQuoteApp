@@ -5,35 +5,35 @@ using QuoteApp.PageModels;
 namespace QuoteApp.Pages
 {
     public class RootContainerPage : MasterDetailPage, IRootNavigation
-	{
-		ContentPage _menuPage;
-		NavigationPage _contactNavPage, _quotesNavPage;
+    {
+        ContentPage _menuPage;
+        NavigationPage _contactNavPage, _quotesNavPage;
 
-		public RootContainerPage ()
-		{
+        public RootContainerPage ()
+        {
             _contactNavPage = new NavigationPage (BasePageModel.ResolveViewModel<ContactsRootPageModel> (null));
             _quotesNavPage = new NavigationPage (BasePageModel.ResolveViewModel<QuotesRootPageModel> (null));
-			Detail = _contactNavPage;
+            Detail = _contactNavPage;
 
-			_menuPage = new ContentPage ();
-			_menuPage.Title = "Menu";
-			var listView = new ListView();
+            _menuPage = new ContentPage ();
+            _menuPage.Title = "Menu";
+            var listView = new ListView();
 
-			listView.ItemsSource = new string[] { "Contacts", "Quotes" };
+            listView.ItemsSource = new string[] { "Contacts", "Quotes" };
 
-			listView.ItemSelected += (sender, args) =>
-			{
-				if ((string)args.SelectedItem == "Contacts")
-					Detail = _contactNavPage;
-				if ((string)args.SelectedItem == "Quotes")
-					Detail = _quotesNavPage;
+            listView.ItemSelected += (sender, args) =>
+            {
+                if ((string)args.SelectedItem == "Contacts")
+                	Detail = _contactNavPage;
+                if ((string)args.SelectedItem == "Quotes")
+                	Detail = _quotesNavPage;
 
-				IsPresented = false;
-			};
+                IsPresented = false;
+            };
 
-			_menuPage.Content = listView;
-			Master = new NavigationPage(_menuPage) { Title = "Menu" };
-		}
+            _menuPage.Content = listView;
+            Master = new NavigationPage(_menuPage) { Title = "Menu" };
+        }
 
         public void PushPage (Page page, BasePageModel model)
         {
@@ -44,6 +44,6 @@ namespace QuoteApp.Pages
         {
             ((NavigationPage)Detail).PopAsync ();
         }
-	}
+    }
 }
 

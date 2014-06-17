@@ -4,41 +4,41 @@ using QuoteApp.PageModels;
 
 namespace QuoteApp.Pages
 {
-	public class QuotesRootPage : ContentPage 
-	{
-		public QuotesRootPageModel ViewModel { get; set; }
+    public class QuotesRootPage : ContentPage 
+    {
+        public QuotesRootPageModel ViewModel { get; set; }
 
-		public QuotesRootPage ()
-		{
-			Title = "Quotes";
-		}
+        public QuotesRootPage ()
+        {
+            Title = "Quotes";
+        }
 
-		public void Init()
-		{
-			var listView = new ListView ();
+        public void Init()
+        {
+            var listView = new ListView ();
 
-			var template = new DataTemplate (typeof(TextCell));
+            var template = new DataTemplate (typeof(TextCell));
 
-			template.SetBinding (TextCell.TextProperty, "CustomerName");
-			template.SetBinding (TextCell.DetailProperty, "Total");
+            template.SetBinding (TextCell.TextProperty, "CustomerName");
+            template.SetBinding (TextCell.DetailProperty, "Total");
 
-			listView.ItemTemplate = template;
+            listView.ItemTemplate = template;
 
-			listView.SetBinding (ListView.ItemsSourceProperty, "Quotes");
-			listView.SetBinding (ListView.SelectedItemProperty, "QuoteSelected");
+            listView.SetBinding (ListView.ItemsSourceProperty, "Quotes");
+            listView.SetBinding (ListView.SelectedItemProperty, "QuoteSelected");
 
-			ToolbarItems.Add(new ToolbarItem("Add", null, () => {
-				ViewModel.AddQuote.Execute(null);
-			}));
+            ToolbarItems.Add(new ToolbarItem("Add", null, () => {
+                ViewModel.AddQuote.Execute(null);
+            }));
 
-			Content = listView;
-		}
+            Content = listView;
+        }
 
-		protected override void OnAppearing ()
-		{
-			base.OnAppearing ();
-			ViewModel.Reload ();
-		}
-	}
+        protected override void OnAppearing ()
+        {
+            base.OnAppearing ();
+            ViewModel.Reload ();
+        }
+    }
 }
 

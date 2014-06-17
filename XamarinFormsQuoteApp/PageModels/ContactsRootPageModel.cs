@@ -24,15 +24,15 @@ namespace QuoteApp.PageModels
 
         public void Reload ()
         {
-			if (Contacts == null)
-				Contacts = new ObservableCollection<Contact> (_databaseService.Conn.Table<Contact> ());
-			else {
-				//TODO: something smarter
-				Contacts.Clear ();
-				foreach (var cont in _databaseService.Conn.Table<Contact>()) {
-					Contacts.Add (cont);
-				}
-			}
+            if (Contacts == null)
+                Contacts = new ObservableCollection<Contact> (_databaseService.Conn.Table<Contact> ());
+            else {
+                //TODO: something smarter
+                Contacts.Clear ();
+                foreach (var cont in _databaseService.Conn.Table<Contact>()) {
+                	Contacts.Add (cont);
+                }
+            }
         }
 
         public Command AddContact

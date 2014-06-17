@@ -4,13 +4,13 @@ using QuoteApp.PageModels;
 
 namespace QuoteApp.Pages
 {
-	public class ContactsRootPage : ContentPage
-	{
+    public class ContactsRootPage : ContentPage
+    {
         public ContactsRootPageModel ViewModel { get; set; }
 
-		public ContactsRootPage ()
-		{
-			Title = "Contacts";
+        public ContactsRootPage ()
+        {
+            Title = "Contacts";
 
             var list = new ListView ();
 
@@ -24,18 +24,18 @@ namespace QuoteApp.Pages
             list.SetBinding (ListView.ItemsSourceProperty, "Contacts");
             list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => ViewModel.ContactSelected.Execute (e.SelectedItem);
 
-			ToolbarItems.Add(new ToolbarItem("Add", null, () => {
+            ToolbarItems.Add(new ToolbarItem("Add", null, () => {
                 ViewModel.AddContact.Execute(null);
             }));
 
             Content = list;
-		}
+        }
 
         protected override void OnAppearing ()
         {
             base.OnAppearing ();
-			ViewModel.Reload ();
+            ViewModel.Reload ();
         }
-	}
+    }
 }
 

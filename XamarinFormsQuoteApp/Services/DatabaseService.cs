@@ -31,7 +31,6 @@ namespace QuoteApp.Services
         {
             get { return _connection; }
         }
-
     }
 }
 
