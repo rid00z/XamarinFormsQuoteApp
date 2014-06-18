@@ -39,7 +39,7 @@ namespace QuoteApp.PageModels
         {
             get {
                 return new Command(() => {
-                    PushViewModel<ContactPageModel>();
+                    PushPageModel<ContactPageModel>();
                 });
             }
         }
@@ -48,7 +48,7 @@ namespace QuoteApp.PageModels
         {
             get {
                 return new Command<Contact>((contact) => {
-                    PushViewModel<ContactPageModel>(contact);
+                    PushPageModel<ContactPageModel>(contact);
                 });
             }
         }

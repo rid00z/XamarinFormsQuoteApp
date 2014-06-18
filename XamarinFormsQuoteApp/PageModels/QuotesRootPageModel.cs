@@ -32,7 +32,7 @@ namespace QuoteApp.PageModels
         public Command AddQuote {
             get {
                 return new Command (() => {
-                    PushViewModel<QuotePageModel>();
+                    PushPageModel<QuotePageModel>();
                 });
             }
         }
@@ -40,7 +40,7 @@ namespace QuoteApp.PageModels
         public Command<Quote> QuoteSelected {
             get {
                 return new Command<Quote> ((quote) => {
-                    PushViewModel<QuotePageModel>(quote);
+                    PushPageModel<QuotePageModel>(quote);
                 });
             }
         }

@@ -6,7 +6,7 @@ namespace QuoteApp.Pages
 {
     public class QuotesRootPage : ContentPage 
     {
-        public QuotesRootPageModel ViewModel { get; set; }
+        public QuotesRootPageModel PageModel { get; set; }
 
         public QuotesRootPage ()
         {
@@ -28,7 +28,7 @@ namespace QuoteApp.Pages
             listView.SetBinding (ListView.SelectedItemProperty, "QuoteSelected");
 
             ToolbarItems.Add(new ToolbarItem("Add", null, () => {
-                ViewModel.AddQuote.Execute(null);
+                PageModel.AddQuote.Execute(null);
             }));
 
             Content = listView;
@@ -37,7 +37,7 @@ namespace QuoteApp.Pages
         protected override void OnAppearing ()
         {
             base.OnAppearing ();
-            ViewModel.Reload ();
+            PageModel.Reload ();
         }
     }
 }

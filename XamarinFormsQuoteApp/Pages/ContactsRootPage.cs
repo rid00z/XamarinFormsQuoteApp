@@ -6,7 +6,7 @@ namespace QuoteApp.Pages
 {
     public class ContactsRootPage : ContentPage
     {
-        public ContactsRootPageModel ViewModel { get; set; }
+        public ContactsRootPageModel PageModel { get; set; }
 
         public ContactsRootPage ()
         {
@@ -22,10 +22,10 @@ namespace QuoteApp.Pages
             list.ItemTemplate = cellTemplate;
 
             list.SetBinding (ListView.ItemsSourceProperty, "Contacts");
-            list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => ViewModel.ContactSelected.Execute (e.SelectedItem);
+            list.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => PageModel.ContactSelected.Execute (e.SelectedItem);
 
             ToolbarItems.Add(new ToolbarItem("Add", null, () => {
-                ViewModel.AddContact.Execute(null);
+                PageModel.AddContact.Execute(null);
             }));
 
             Content = list;
@@ -34,7 +34,7 @@ namespace QuoteApp.Pages
         protected override void OnAppearing ()
         {
             base.OnAppearing ();
-            ViewModel.Reload ();
+            PageModel.Reload ();
         }
     }
 }

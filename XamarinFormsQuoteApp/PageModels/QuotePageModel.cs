@@ -30,7 +30,7 @@ namespace QuoteApp.PageModels
                     	_databaseService.Conn.Insert(Quote);
                     else 
                     	_databaseService.Conn.Update(Quote);
-                    PopViewModel();
+                    PopPageModel();
                 });
             }
         }

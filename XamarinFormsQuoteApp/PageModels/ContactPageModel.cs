@@ -35,7 +35,7 @@ namespace QuoteApp.PageModels
                             _dataService.Conn.Insert(Contact);
                         else 
                             _dataService.Conn.Update(Contact);
-                        PopViewModel();
+                        PopPageModel();
                     }
                 );
             }

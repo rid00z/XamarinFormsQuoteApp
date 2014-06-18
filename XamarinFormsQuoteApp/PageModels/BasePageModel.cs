@@ -11,49 +11,49 @@ namespace QuoteApp.PageModels
     public abstract class BasePageModel : INotifyPropertyChanged 
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public BasePageModel PreviousViewModel { get; set; }
+        public BasePageModel PreviousPageModel { get; set; }
 
         public virtual void ReverseInit(object value) { }
 
-        protected void PushViewModel<T> () where T : BasePageModel
+        protected void PushPageModel<T> () where T : BasePageModel
         {
-            PushViewModel<T> (null);
+            PushPageModel<T> (null);
         }
 
-        public static Page ResolveViewModel<T>(Dictionary<string, string> data)
+        public static Page ResolvePageModel<T>(Dictionary<string, string> data)
             where T : BasePageModel
         {
-            var viewModel = TinyIoC.TinyIoCContainer.Current.Resolve<T>();
+            var pageModel = TinyIoC.TinyIoCContainer.Current.Resolve<T>();
 
-            return ResolveViewModel<T>(data, viewModel);
+            return ResolvePageModel<T>(data, pageModel);
         }
 
-        public static Page ResolveViewModel<T>(object data, BasePageModel viewModel)
+        public static Page ResolvePageModel<T>(object data, BasePageModel pageModel)
             where T : BasePageModel
         {
             var name = typeof(T).Name.Replace ("Model", string.Empty);
             var pageType = Type.GetType ("QuoteApp.Pages." + name);
             var page = (Page)TinyIoC.TinyIoCContainer.Current.Resolve (pageType);
 
-            page.BindingContext = viewModel;
+            page.BindingContext = pageModel;
 
             var initMethod = TinyIoC.TypeExtensions.GetMethod (typeof(T), "Init");
             if (initMethod != null) {
             if (initMethod.GetParameters ().Length > 0) 
             {
-            	initMethod.Invoke (viewModel, new object[] { data });
+            	initMethod.Invoke (pageModel, new object[] { data });
             }
             else 
-            	initMethod.Invoke (viewModel, null);
+            	initMethod.Invoke (pageModel, null);
             }
 
-            var vmProperty = TinyIoC.TypeExtensions.GetProperty(pageType, "ViewModel");
+            var vmProperty = TinyIoC.TypeExtensions.GetProperty(pageType, "PageModel");
             if (vmProperty != null)
-            vmProperty.SetValue (page, viewModel);
+            vmProperty.SetValue (page, pageModel);
 
             var vmPageBindingContext = TinyIoC.TypeExtensions.GetProperty(pageType, "BindingContext");
             if (vmPageBindingContext != null)
-            vmPageBindingContext.SetValue (page, viewModel);
+            vmPageBindingContext.SetValue (page, pageModel);
 
             var initMethodPage = TinyIoC.TypeExtensions.GetMethod (pageType, "Init"); 
             if (initMethodPage != null)
@@ -62,30 +62,30 @@ namespace QuoteApp.PageModels
             return page;
         }
 
-        protected void PushViewModel<T> (object data) where T : BasePageModel
+        protected void PushPageModel<T> (object data) where T : BasePageModel
         {
-            BasePageModel viewModel = TinyIoC.TinyIoCContainer.Current.Resolve<T>();;
+            BasePageModel pageModel = TinyIoC.TinyIoCContainer.Current.Resolve<T>();;
 
-            var page = ResolveViewModel<T> (data, viewModel);
+            var page = ResolvePageModel<T> (data, pageModel);
 
-            viewModel.PreviousViewModel = this;
+            pageModel.PreviousPageModel = this;
 
             IRootNavigation rootNav = TinyIoC.TinyIoCContainer.Current.Resolve<IRootNavigation> ();
-            rootNav.PushPage (page, viewModel);
+            rootNav.PushPage (page, pageModel);
         }
 
-        protected void PopViewModel()
+        protected void PopPageModel()
         {
             IRootNavigation rootNav = TinyIoC.TinyIoCContainer.Current.Resolve<IRootNavigation> ();
             rootNav.PopPage ();
         }
 
-        protected void PopViewModel(object data)
+        protected void PopPageModel(object data)
         {
-            if (PreviousViewModel != null && data != null) {
-                var initMethod = TinyIoC.TypeExtensions.GetMethod (PreviousViewModel.GetType(), "ReverseInit"); 
+            if (PreviousPageModel != null && data != null) {
+                var initMethod = TinyIoC.TypeExtensions.GetMethod (PreviousPageModel.GetType(), "ReverseInit"); 
                 if (initMethod != null) {
-                	initMethod.Invoke (PreviousViewModel, new object[] { data });
+                	initMethod.Invoke (PreviousPageModel, new object[] { data });
                 }
             }
             IRootNavigation tabbedNav = TinyIoC.TinyIoCContainer.Current.Resolve<IRootNavigation> ();

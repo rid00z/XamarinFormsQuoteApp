@@ -6,7 +6,7 @@ namespace QuoteApp.Pages
 {
     public class QuotePage : ContentPage
     {
-        public QuotePageModel ViewModel { get; set; }
+        public QuotePageModel PageModel { get; set; }
 
         public QuotePage ()
         {
@@ -31,7 +31,7 @@ namespace QuoteApp.Pages
             Content = stacker;
 
             ToolbarItems.Add(new ToolbarItem("Done", null, () => {
-                ViewModel.Done.Execute(null);
+                PageModel.Done.Execute(null);
             }));
 
         }

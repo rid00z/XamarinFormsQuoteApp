@@ -6,7 +6,7 @@ namespace QuoteApp.Pages
 {
     public class ContactPage : ContentPage 
     {
-        public ContactPageModel ViewModel { get; set; }
+        public ContactPageModel PageModel { get; set; }
 
         public ContactPage ()
         {
@@ -27,7 +27,7 @@ namespace QuoteApp.Pages
             Content = stacker;
 
             ToolbarItems.Add(new ToolbarItem("Done", null, () => {
-                ViewModel.Done.Execute(null);
+                PageModel.Done.Execute(null);
             }));
         }
     }

@@ -11,8 +11,8 @@ namespace QuoteApp.Pages
 
         public RootContainerPage ()
         {
-            _contactNavPage = new NavigationPage (BasePageModel.ResolveViewModel<ContactsRootPageModel> (null));
-            _quotesNavPage = new NavigationPage (BasePageModel.ResolveViewModel<QuotesRootPageModel> (null));
+            _contactNavPage = new NavigationPage (BasePageModel.ResolvePageModel<ContactsRootPageModel> (null));
+            _quotesNavPage = new NavigationPage (BasePageModel.ResolvePageModel<QuotesRootPageModel> (null));
             Detail = _contactNavPage;
 
             _menuPage = new ContentPage ();
